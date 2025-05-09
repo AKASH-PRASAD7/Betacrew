@@ -1,0 +1,70 @@
+# BetaCrew Exchange Client
+
+This project implements a Node.js client application designed to interact with the BetaCrew mock exchange server as part of a take-home technical assessment.
+
+The client connects to the server via TCP, requests a stream of stock ticker packet data, identifies any missing packets based on sequence numbers, requests those missing packets individually, and finally compiles all received packets into a single JSON array, sorted by sequence number, ensuring no sequences are missing up to the highest sequence received.
+
+## Features
+
+- Connects to the BetaCrew mock exchange server via TCP.
+- Sends requests for the full packet stream (Call Type 1).
+- Handles binary data reception and parsing (Big Endian).
+- Identifies missing packet sequences after the initial stream.
+- Requests specific missing packets (Call Type 2).
+- Combines and sorts all received packets by sequence number.
+- Outputs the complete, ordered packet data to a JSON file (`stock_data.json`).
+
+## Prerequisites
+
+Before running this client, you need the following:
+
+- **Node.js:** Version 16.17.0 or higher. You can download it from [nodejs.org](https://nodejs.org/).
+- **BetaCrew exchange server files:** You must have downloaded and unzipped the provided "betacrew_exchange_server" zip file containing `main.js` and related files.
+
+## Setup
+
+1.  Download and unzip the "betacrew_exchange_server" zip file if you haven't already.
+2.  Place the provided `client.js` file (the client code you developed) into the **same directory** as the server's `main.js` file.
+3.  This client uses only Node.js built-in modules (`net`, `fs`, `path`), so no `npm install` command is required.
+
+## How to Run
+
+You will need two separate terminal or command prompt windows for this.
+
+1.  **Start the Server:**
+
+    - Open your first terminal window.
+    - Navigate to the directory where you placed the server (`main.js`) and client (`client.js`) files.
+    - Run the server using the command:
+    - ```bash
+      cd betacrew_exchange_server
+      ```
+      ```bash
+      node main.js
+      ```
+    - Leave this terminal window open and running. You should see output indicating the server has started on port 3000.
+
+2.  **Run the Client:**
+    - Open your second terminal window.
+    - Navigate to the **same directory** as the server files.
+    - Run the client using the command:
+      ```bash
+      node client.js
+      ```
+    - Observe the output in this terminal. The client will log its connection attempts, data reception, missing sequence identification, and resend requests.
+
+## Output
+
+Upon successful execution, the client will create a file named `stock_data.json` in the same directory.
+
+This JSON file will contain a single array of objects. Each object represents a parsed packet and will have the following structure:
+
+```json
+{
+  "symbol": "ABCD",
+  "indicator": "B",
+  "quantity": 100,
+  "price": 12345,
+  "sequence": 1
+}
+```
