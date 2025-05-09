@@ -14,17 +14,8 @@ The client connects to the server via TCP, requests a stream of stock ticker pac
 - Combines and sorts all received packets by sequence number.
 - Outputs the complete, ordered packet data to a JSON file (`stock_data.json`).
 
-## Prerequisites
-
-Before running this client, you need the following:
-
-- **Node.js:** Version 16.17.0 or higher. You can download it from [nodejs.org](https://nodejs.org/).
-- **BetaCrew exchange server files:** You must have downloaded and unzipped the provided "betacrew_exchange_server" zip file containing `main.js` and related files.
-
 
 ## How to Run
-
-You will need two separate terminal or command prompt windows for this.
 
 1.  **Start the Server:**
 
