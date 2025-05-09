@@ -21,11 +21,6 @@ Before running this client, you need the following:
 - **Node.js:** Version 16.17.0 or higher. You can download it from [nodejs.org](https://nodejs.org/).
 - **BetaCrew exchange server files:** You must have downloaded and unzipped the provided "betacrew_exchange_server" zip file containing `main.js` and related files.
 
-## Setup
-
-1.  Download and unzip the "betacrew_exchange_server" zip file if you haven't already.
-2.  Place the provided `client.js` file (the client code you developed) into the **same directory** as the server's `main.js` file.
-3.  This client uses only Node.js built-in modules (`net`, `fs`, `path`), so no `npm install` command is required.
 
 ## How to Run
 
